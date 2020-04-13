@@ -18,7 +18,6 @@ def clean(opcodesList):
 
 def collect():
     global Mnemonics
-    filename = os.listdir("contracts")[0]
     for filename in os.listdir("contracts"):
         opcodes = subprocess.run(["evmasm", "-d", "-i", "contracts/" + filename],
                                  capture_output=True).stdout
