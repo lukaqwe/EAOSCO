@@ -11,14 +11,13 @@ def clean(opcodesList):
     mnemonic = re.compile("[A-Z]+[0-9]{0,2}")
     result = []
     for opcode in opcodesList:
-        if mnemonic.match(opcode) != None:
+        if mnemonic.match(opcode):
             result.append(opcode)
     return result
 
 
 def collect():
     global Mnemonics
-    filename = os.listdir("contracts")[0]
     for filename in os.listdir("contracts"):
         opcodes = subprocess.run(["evmasm", "-d", "-i", "contracts/" + filename],
                                  capture_output=True).stdout
@@ -36,7 +35,7 @@ def count():
     global Mnemonics, Entropy
     for mnemonic in Mnemonics:
         if mnemonic not in Entropy:
-            Entropy[mnemonic] = 0
+            Entropy[mnemonic] = 1
         else:
             Entropy[mnemonic] += 1
 
