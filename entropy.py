@@ -56,9 +56,17 @@ def getEntropy():
 
 def makeTable():
     Entropy = getEntropy()
-    result = '| Mnemonic | Occurences | \n'
+    result = '| Occurences| Mnemonics | \n'
+    FinalTable = {}
+
     for key in Entropy:
-        result += '|' + key + ' | ' + str(Entropy[key]) + '|\n'
+        FinalTable[Entropy[key]] = ''
+    for key in Entropy:
+        FinalTable[Entropy[key]] += key + ','
+    for key in FinalTable:
+        FinalTable[key] = FinalTable[key][:-1]
+    for key in FinalTable:
+        result += str(key) + ' | ' + FinalTable[key] + '\n'
     return result
 
 
