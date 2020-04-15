@@ -3,6 +3,7 @@ import subprocess
 import re
 
 Mnemonics = []  # this list stores all mnemonics from all contracts
+Total = 0  # nr of total mnemonics in selected contracts
 Entropy = {}  # dictionary containing nr of occurences per mnemonic
 
 
@@ -32,7 +33,8 @@ def collect():
 
 
 def count():
-    global Mnemonics, Entropy
+    global Mnemonics, Entropy, Total
+    Total = len(Mnemonics)
     for mnemonic in Mnemonics:
         if mnemonic not in Entropy:
             Entropy[mnemonic] = 1
@@ -40,7 +42,25 @@ def count():
             Entropy[mnemonic] += 1
 
 
-if __name__ == "__main__":
+def sort():
+    global Entropy
+    Entropy = {k: v for k, v in sorted(Entropy.items(), key=lambda item: item[1])}
+    return Entropy
+
+
+def getEntropy():
     collect()
     count()
-    print(Entropy)
+    return sort()
+
+
+def makeTable():
+    Entropy = getEntropy()
+    result = 'Mnemonic | Occurences \n'
+    for key in Entropy:
+        result += key + ' | ' + str(Entropy[key]) + '\n'
+    return result
+
+
+if __name__ == "__main__":
+    print(makeTable())
