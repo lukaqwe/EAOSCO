@@ -62,9 +62,9 @@ def makeTable():
     for key in Entropy:
         FinalTable[Entropy[key]] = ''
     for key in Entropy:
-        FinalTable[Entropy[key]] += key + ','
+        FinalTable[Entropy[key]] += key + ', '
     for key in FinalTable:
-        FinalTable[key] = FinalTable[key][:-1]
+        FinalTable[key] = FinalTable[key][:-2]
     for key in FinalTable:
         result += str(key) + ' | ' + FinalTable[key] + '\n'
     return result
