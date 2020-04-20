@@ -1,3 +1,4 @@
+from gas import GasPerMnemonic
 import os
 import subprocess
 import re
@@ -44,7 +45,7 @@ def count():
 
 def sort():
     global Entropy
-    Entropy = {k: v for k, v in sorted(Entropy.items(), key=lambda item: item[1])}
+    Entropy = {k: v for k, v in sorted(Entropy.items(), key=lambda item: item[1], reverse=True)}
     return Entropy
 
 
@@ -56,17 +57,18 @@ def getEntropy():
 
 def makeTable():
     Entropy = getEntropy()
-    result = '| Occurences| Mnemonics | \n'
-    FinalTable = {}
+    GasCost = GasPerMnemonic()
+    result = '| Mnemonics| Occurences | Gas Cost | Gas Spent | \n  --- | --- | --- | --- \n'
 
     for key in Entropy:
-        FinalTable[Entropy[key]] = ''
-    for key in Entropy:
-        FinalTable[Entropy[key]] += key + ', '
-    for key in FinalTable:
-        FinalTable[key] = FinalTable[key][:-2]
-    for key in FinalTable:
-        result += str(key) + ' | ' + FinalTable[key] + '\n'
+        result += key + '|' + str(Entropy[key]) + '|'
+
+        if key in GasCost[0]:
+            result += str(GasCost[0][key]) + "|" + str(GasCost[0][key]*Entropy[key])
+        elif key in GasCost[1]:
+            result += str(GasCost[1][key]) + "|" + "N\A"
+        result += '\n'
+
     return result
 
 
