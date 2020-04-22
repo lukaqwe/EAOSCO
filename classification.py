@@ -1,4 +1,4 @@
-# string containing opcodes is taken from Mastering Ethereum, O'reilly
+# string containing opcodes is taken from Mastering Ethereum, O'reilly media
 
 import re
 ArithmeticOps = '''ADD        //Add the top two stack items
@@ -113,6 +113,7 @@ def clean(opcodesList):
     return result
 
 
+# the main function in this file returns a dict class -> opcodes list
 def classify():
     Classes = {"Arithmetic": ArithmeticOps, "Block": BlockOps, "Logic": LogicOps, "System": SystemOps,
                "ProcessFlow":  ProcessFlowOps, "StackMemory":  StackMemoryOps, "Environmental": EnvironmentalOps}

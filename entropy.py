@@ -1,4 +1,4 @@
-from gas import GasPerMnemonic
+from gas import gasPerMnemonic
 import os
 import subprocess
 import re
@@ -55,6 +55,7 @@ def getEntropy():
     return sort()
 
 
+# this function makes the table in the README.md
 def makeTable():
     Entropy = getEntropy()
     GasCost = GasPerMnemonic()

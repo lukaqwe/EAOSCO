@@ -1,7 +1,7 @@
 import csv
 
 
-def GasPerMnemonic():
+def gasPerMnemonic():
     GasCost = {}
     NormalOps = {}
     SpecialOps = {}
