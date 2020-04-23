@@ -58,19 +58,25 @@ def getEntropy():
 # this function makes the table in the README.md
 def makeTable():
     Entropy = getEntropy()
-    GasCost = GasPerMnemonic()
-    result = '| Mnemonics| Occurences | Gas Cost | Gas Spent | \n  --- | --- | --- | --- \n'
+    GasCost = gasPerMnemonic()
+    Avg = avg()
+    table = '| Mnemonics| Occurences | Gas Cost | Gas Spent | Occ. per Contract \n  --- | --- | --- | --- | --- \n'
 
     for key in Entropy:
-        result += key + '|' + str(Entropy[key]) + '|'
+        table += key + '|' + str(Entropy[key]) + '|'
 
         if key in GasCost[0]:
-            result += str(GasCost[0][key]) + "|" + str(GasCost[0][key]*Entropy[key])
+            table += str(GasCost[0][key]) + "|" + str(GasCost[0][key]*Entropy[key]) + "|"
         elif key in GasCost[1]:
-            result += str(GasCost[1][key]) + "|" + "N\A"
-        result += '\n'
+            table += str(GasCost[1][key]) + "| N\A |"
+        table += str(Avg[key])
+        table += '\n'
 
-    return result
+    return table
+
+
+def avg():  # computes average of mnemonic occurences per contract
+    return {k: v/50 for k, v in getEntropy().items()}
 
 
 if __name__ == "__main__":

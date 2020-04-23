@@ -27,5 +27,5 @@ def gasPerMnemonic():
 
 
 if __name__ == "__main__":
-    print(GasPerMnemonic())
-    print(len(GasPerMnemonic()[0])+len(GasPerMnemonic()[1]))
+    print(gasPerMnemonic())
+    print(len(gasPerMnemonic()[0])+len(gasPerMnemonic()[1]))
