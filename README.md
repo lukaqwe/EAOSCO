@@ -2,7 +2,7 @@
 
 
 
-`entropy.py`calculates number of occurrences of each mnemonic in the contracts from the `contracts/` folder. There are 50 contracts taken from etherescan.io. Before running the script make sure you installed the EVM disassembler, you can do that using `pip install pyevmasm`. At operations that have a dynamic gas cost (a formula calculating it) their minimum was taken.
+`entropy.py`calculates number of occurrences of each mnemonic in the contracts from the `contracts/` folder. There are 50 contracts taken from etherescan.io. Before running the script make sure you installed the EVM disassembler, you can do that using `pip install pyevmasm`. At operations that have a dynamic gas cost (a formula calculating it) their minimum was taken. `opcode-gas-costs.csv` was taken from https://github.com/djrtwo/evm-opcode-gas-costs/blob/master/opcode-gas-costs_EIP-150_revision-1e18248_2017-04-12.csv and modified according to the needs.
 
 
 #Results:
